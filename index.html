@@ -9,167 +9,110 @@
 body {
     margin: 0;
     font-family: Arial, sans-serif;
-    color: white;
-    overflow-x: hidden;
-}
-
-/* Night Sky Background */
-body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
     background: radial-gradient(circle at top, #0b1d3a, #02040a);
-    z-index: -2;
+    color: white;
+    overflow: hidden;
 }
 
-/* Stars */
-.stars {
+/* ENTRY SCREEN */
+#entry {
     position: fixed;
     width: 100%;
     height: 100%;
-    background: transparent;
-    z-index: -1;
-}
-
-.stars::after {
-    content: "";
-    position: absolute;
-    width: 2px;
-    height: 2px;
-    background: white;
-    box-shadow: 
-        20px 30px white,
-        50px 80px white,
-        90px 120px white,
-        130px 60px white,
-        200px 150px white,
-        300px 90px white,
-        400px 200px white,
-        600px 100px white,
-        800px 300px white;
-    animation: twinkle 3s infinite alternate;
-}
-
-@keyframes twinkle {
-    from { opacity: 0.3; }
-    to { opacity: 1; }
-}
-
-/* Moon */
-.moon {
-    position: absolute;
-    top: 60px;
-    right: 80px;
-    width: 120px;
-    height: 120px;
-    background: #f5f3ce;
-    border-radius: 50%;
-    box-shadow: 0 0 40px #fff7b0;
-}
-
-/* Hero */
-.hero {
-    height: 100vh;
+    background: black;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
+    z-index: 10;
+}
+
+#entry h1 {
+    font-size: 35px;
+    color: gold;
     text-align: center;
+    animation: glow 2s infinite alternate;
 }
 
-.hero h1 {
-    font-size: 55px;
-    background: rgba(0,0,0,0.4);
-    padding: 10px 25px;
-    border-radius: 15px;
+#entry button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    border: none;
+    background: gold;
+    color: black;
+    font-weight: bold;
+    border-radius: 10px;
+}
+
+/* MAIN PAGE */
+.main {
+    display: none;
+    text-align: center;
+    padding-top: 80px;
+}
+
+.logo {
+    font-size: 24px;
+    color: gold;
     border: 1px solid gold;
-}
-
-.hero p {
-    font-size: 20px;
-    color: #ddd;
-}
-
-/* Cards */
-.container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    padding: 40px;
-    gap: 20px;
+    display: inline-block;
+    padding: 8px 15px;
+    border-radius: 10px;
+    background: rgba(0,0,0,0.4);
 }
 
 .card {
-    width: 260px;
-    padding: 20px;
-    background: rgba(255,255,255,0.08);
-    backdrop-filter: blur(10px);
-    border-radius: 15px;
-    border: 1px solid gold;
-    text-align: center;
-}
-
-/* Contact */
-.contact {
-    text-align: center;
-    padding: 40px;
-    background: rgba(0,0,0,0.5);
-}
-
-.contact a {
-    color: gold;
-    text-decoration: none;
-    font-weight: bold;
-}
-
-footer {
-    text-align: center;
+    margin: 20px auto;
+    width: 80%;
+    max-width: 300px;
     padding: 15px;
-    background: black;
+    border: 1px solid gold;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.08);
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 5px gold; }
+    to { text-shadow: 0 0 20px gold; }
 }
 </style>
 </head>
 
 <body>
 
-<div class="stars"></div>
-<div class="moon"></div>
-
-<div class="hero">
-    <h1>TONYSER</h1>
-    <p>🌙 Moon Night Kerala Vibes • Calm • Culture • Creativity</p>
+<!-- ENTRY SCREEN -->
+<div id="entry">
+    <h1>🌙 WELCOME TO TONY WORLD 🌙</h1>
+    <button onclick="enter()">ENTER</button>
 </div>
 
-<div class="container">
+<!-- MAIN CONTENT -->
+<div class="main" id="main">
+
+    <div class="logo">TONYSER</div>
+
+    <h1>Hi, I'm Thejas 👋</h1>
+    <p>🥁 Job: Panjavadyam Artist</p>
+    <p>🎮 Gamer | Creator | Kerala Vibes</p>
+
     <div class="card">
-        <h2>🥁 Chendamelam</h2>
-        <p>Traditional Kerala percussion under moonlight vibes.</p>
+        <h3>🔥 About Me</h3>
+        <p>I love traditional Kerala Panjavadyam and gaming world.</p>
     </div>
 
     <div class="card">
-        <h2>🌴 Kerala Nights</h2>
-        <p>Peaceful beauty of God’s Own Country at night.</p>
+        <h3>🌙 Lifestyle</h3>
+        <p>Music + Culture + Gaming = My Identity</p>
     </div>
 
-    <div class="card">
-        <h2>✨ Dream Theme</h2>
-        <p>Modern glowing glass UI with night aesthetics.</p>
-    </div>
 </div>
 
-<div class="contact">
-    <h2>📞 Contact</h2>
-    <p>Instagram: <a href="https://instagram.com/thejastony" target="_blank">@thejastony</a></p>
-    <p>WhatsApp: <a href="https://wa.me/7994873681" target="_blank">7994873681</a></p>
-    <p>Email: <a href="mailto:pgpshrogaming@gmail.com">pgpshrogaming@gmail.com</a></p>
-</div>
-
-<footer>
-    © 2026 TONYSER | Moon Theme Edition 🌙
-</footer>
+<script>
+function enter() {
+    document.getElementById("entry").style.display = "none";
+    document.getElementById("main").style.display = "block";
+}
+</script>
 
 </body>
 </html>
