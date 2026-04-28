@@ -1,11 +1,18 @@
-<button onclick="startMusic()">▶ Play Music</button>
-
-<audio id="bgMusic" loop>
-  <source src="music.mp3" type="audio/mpeg">
-</audio>
+<!-- MUSIC PLAYER -->
+<iframe id="ytplayer"
+width="0" height="0"
+src=""
+allow="autoplay"
+allowfullscreen>
+</iframe>
 
 <script>
-function startMusic() {
-  document.getElementById("bgMusic").play();
+function startSite() {
+  // play music after user tap
+  document.getElementById("ytplayer").src =
+  "https://www.youtube.com/embed/u2ah9tWTkmk?autoplay=1&loop=1&playlist=u2ah9tWTkmk";
+
+  // hide intro screen
+  document.getElementById("enter").style.display = "none";
 }
 </script>
