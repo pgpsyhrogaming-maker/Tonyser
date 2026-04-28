@@ -2,197 +2,174 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<title>TONYSER</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Thejas | Chendamelam Artist</title>
-
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
 <style>
-:root{
-  --gold:#ffd700;
-  --green:#0b3d2e;
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: white;
+    overflow-x: hidden;
 }
 
-body{
-  margin:0;
-  font-family:'Poppins',sans-serif;
-  color:white;
-  background:black;
-  overflow-x:hidden;
+/* Night Sky Background */
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at top, #0b1d3a, #02040a);
+    z-index: -2;
 }
 
-/* VIDEO BACKGROUND */
-video{
-  position:fixed;
-  width:100%;
-  height:100%;
-  object-fit:cover;
-  z-index:-2;
-  filter:brightness(0.45);
+/* Stars */
+.stars {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    z-index: -1;
 }
 
-/* OVERLAY */
-.overlay{
-  position:fixed;
-  width:100%;
-  height:100%;
-  background:linear-gradient(to bottom, rgba(11,61,46,0.8), rgba(0,0,0,0.9));
-  z-index:-1;
+.stars::after {
+    content: "";
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: white;
+    box-shadow: 
+        20px 30px white,
+        50px 80px white,
+        90px 120px white,
+        130px 60px white,
+        200px 150px white,
+        300px 90px white,
+        400px 200px white,
+        600px 100px white,
+        800px 300px white;
+    animation: twinkle 3s infinite alternate;
 }
 
-/* HEADER */
-header{
-  text-align:center;
-  padding:70px 20px 40px;
+@keyframes twinkle {
+    from { opacity: 0.3; }
+    to { opacity: 1; }
 }
 
-/* PROFILE */
-.profile img{
-  width:160px;
-  height:160px;
-  object-fit:cover;
-  border-radius:50%;
-  border:4px solid var(--gold);
-  box-shadow:0 0 25px var(--gold);
+/* Moon */
+.moon {
+    position: absolute;
+    top: 60px;
+    right: 80px;
+    width: 120px;
+    height: 120px;
+    background: #f5f3ce;
+    border-radius: 50%;
+    box-shadow: 0 0 40px #fff7b0;
 }
 
-/* NAME */
-header h1{
-  font-family:'Playfair Display',serif;
-  font-size:44px;
-  color:var(--gold);
-  margin:15px 0 5px;
+/* Hero */
+.hero {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 
-/* SUBTEXT */
-header p{
-  font-size:17px;
-  opacity:0.9;
+.hero h1 {
+    font-size: 55px;
+    background: rgba(0,0,0,0.4);
+    padding: 10px 25px;
+    border-radius: 15px;
+    border: 1px solid gold;
 }
 
-/* SECTION */
-.section{
-  max-width:1000px;
-  margin:auto;
-  padding:25px;
+.hero p {
+    font-size: 20px;
+    color: #ddd;
 }
 
-/* GLASS CARD */
-.card{
-  background:rgba(255,255,255,0.08);
-  backdrop-filter:blur(12px);
-  padding:25px;
-  border-radius:16px;
-  margin:18px 0;
-  border:1px solid rgba(255,215,0,0.35);
-  transition:0.3s;
+/* Cards */
+.container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: 40px;
+    gap: 20px;
 }
 
-.card:hover{
-  transform:translateY(-5px);
-  box-shadow:0 0 18px var(--gold);
+.card {
+    width: 260px;
+    padding: 20px;
+    background: rgba(255,255,255,0.08);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    border: 1px solid gold;
+    text-align: center;
 }
 
-/* HEADINGS */
-h2{
-  color:var(--gold);
-  margin-bottom:10px;
+/* Contact */
+.contact {
+    text-align: center;
+    padding: 40px;
+    background: rgba(0,0,0,0.5);
 }
 
-/* BUTTON */
-.btn{
-  padding:12px 25px;
-  background:var(--gold);
-  color:black;
-  border:none;
-  border-radius:6px;
-  cursor:pointer;
-  font-weight:600;
-  margin-top:15px;
+.contact a {
+    color: gold;
+    text-decoration: none;
+    font-weight: bold;
 }
 
-/* FOOTER */
-footer{
-  text-align:center;
-  padding:20px;
-  background:rgba(0,0,0,0.6);
-  margin-top:30px;
-}
-
-/* MOBILE OPTIMIZATION */
-@media(max-width:600px){
-  header h1{font-size:34px;}
-  .profile img{width:130px;height:130px;}
+footer {
+    text-align: center;
+    padding: 15px;
+    background: black;
 }
 </style>
 </head>
 
 <body>
 
-<!-- VIDEO -->
-<video autoplay muted loop playsinline>
-<source src="https://cdn.coverr.co/videos/coverr-hindu-festival-4732/1080p.mp4">
-</video>
+<div class="stars"></div>
+<div class="moon"></div>
 
-<div class="overlay"></div>
-
-<header class="profile">
-<img src="IMG_2026042816250070213.png">
-<h1>Thejas</h1>
-<p>Chendamelam Artist | Kerala</p>
-
-<button class="btn" onclick="playMusic()">▶ Play Music</button>
-</header>
-
-<div class="section">
-
-<div class="card">
-<h2>About Me</h2>
-<p>
-I am Thejas, a passionate Chendamelam artist from Kerala.  
-I perform in temple festivals and cultural events, preserving traditional rhythm and energy.
-</p>
+<div class="hero">
+    <h1>TONYSER</h1>
+    <p>🌙 Moon Night Kerala Vibes • Calm • Culture • Creativity</p>
 </div>
 
-<div class="card">
-<h2>About Chendamelam</h2>
-<p>
-Chendamelam is a traditional percussion ensemble of Kerala, known for its powerful sound and spiritual presence during temple festivals.
-</p>
+<div class="container">
+    <div class="card">
+        <h2>🥁 Chendamelam</h2>
+        <p>Traditional Kerala percussion under moonlight vibes.</p>
+    </div>
+
+    <div class="card">
+        <h2>🌴 Kerala Nights</h2>
+        <p>Peaceful beauty of God’s Own Country at night.</p>
+    </div>
+
+    <div class="card">
+        <h2>✨ Dream Theme</h2>
+        <p>Modern glowing glass UI with night aesthetics.</p>
+    </div>
 </div>
 
-<div class="card">
-<h2>Services</h2>
-<p>
-• Temple Festivals<br>
-• Cultural Events<br>
-• Wedding Programs<br>
-• Stage Performances
-</p>
-</div>
-
-<div class="card">
-<h2>Contact</h2>
-<p>Instagram: @thejastony</p>
-<p>WhatsApp: +91 7994873681</p>
-</div>
-
+<div class="contact">
+    <h2>📞 Contact</h2>
+    <p>Instagram: <a href="https://instagram.com/thejastony" target="_blank">@thejastony</a></p>
+    <p>WhatsApp: <a href="https://wa.me/7994873681" target="_blank">7994873681</a></p>
+    <p>Email: <a href="mailto:pgpshrogaming@gmail.com">pgpshrogaming@gmail.com</a></p>
 </div>
 
 <footer>
-<p>© 2026 Thejas | Kerala Artist</p>
+    © 2026 TONYSER | Moon Theme Edition 🌙
 </footer>
-
-<!-- MUSIC -->
-<audio id="music" src="music.mp3"></audio>
-
-<script>
-function playMusic(){
-  const audio = document.getElementById("music");
-  audio.volume = 0.7;
-  audio.play();
-}
-</script>
 
 </body>
 </html>
