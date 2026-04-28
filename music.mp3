@@ -1,9 +1,11 @@
+<button onclick="startMusic()">▶ Play Music</button>
 
-<!-- Background Music (YouTube) -->
-<iframe 
-  width="0" 
-  height="0"
-  src="https://www.youtube.com/embed/u2ah9tWTkmk?autoplay=1&loop=1&playlist=u2ah9tWTkmk"
-  frameborder="0"
-  allow="autoplay">
-</iframe>
+<audio id="bgMusic" loop>
+  <source src="music.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+function startMusic() {
+  document.getElementById("bgMusic").play();
+}
+</script>
