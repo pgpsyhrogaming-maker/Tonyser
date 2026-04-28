@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Thejas | Tony World</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
 body{
@@ -18,22 +18,21 @@ body{
 /* VIDEO BACKGROUND */
 video{
   position:fixed;
-  top:0;left:0;
   width:100%;
   height:100%;
   object-fit:cover;
   z-index:-2;
 }
 
-/* OVERLAY */
+/* DARK OVERLAY */
 .overlay{
   position:fixed;
   width:100%;height:100%;
-  background:rgba(0,0,0,0.7);
+  background:rgba(0,0,0,0.75);
   z-index:-1;
 }
 
-/* ENTER SCREEN */
+/* INTRO */
 #enter{
   position:fixed;
   width:100%;height:100%;
@@ -42,7 +41,7 @@ video{
   align-items:center;
   justify-content:center;
   flex-direction:column;
-  font-size:30px;
+  font-size:28px;
   z-index:999;
   cursor:pointer;
   text-align:center;
@@ -59,35 +58,34 @@ video{
 nav{
   display:flex;
   justify-content:space-between;
-  padding:20px;
+  padding:15px 25px;
   border-bottom:1px solid #ff00ff;
 }
+nav h2{color:#00ffff}
 
 /* HERO */
 .hero{
   text-align:center;
-  padding:100px 20px;
+  padding:90px 20px;
 }
-
 .hero img{
-  width:130px;
+  width:120px;
   border-radius:20px;
-  box-shadow:0 0 30px #00ffff;
+  box-shadow:0 0 25px #00ffff;
 }
-
 .hero h1{
-  font-size:60px;
+  font-size:55px;
   color:#ff00ff;
-  text-shadow:0 0 25px #ff00ff;
 }
 
-/* CARD */
+/* SECTION */
 .section{
   padding:40px;
   max-width:1100px;
   margin:auto;
 }
 
+/* CARD */
 .card{
   background:rgba(255,255,255,0.05);
   padding:25px;
@@ -96,32 +94,43 @@ nav{
   border-radius:15px;
   transition:0.3s;
 }
-
 .card:hover{
   transform:scale(1.03);
-  box-shadow:0 0 30px #00ffff;
+  box-shadow:0 0 25px #00ffff;
 }
 
-/* GAME CARDS */
+/* GAME GRID */
 .games{
   display:flex;
-  gap:20px;
+  gap:15px;
   flex-wrap:wrap;
 }
-
 .game{
-  width:150px;
-  padding:10px;
+  width:140px;
+  padding:12px;
   border:1px solid #00ffff;
   border-radius:10px;
   text-align:center;
   transition:0.3s;
 }
-
 .game:hover{
   background:#00ffff;
   color:black;
   transform:scale(1.1);
+}
+
+/* STATS */
+.stats{
+  display:flex;
+  gap:20px;
+  flex-wrap:wrap;
+}
+.stat{
+  flex:1;
+  min-width:120px;
+  padding:15px;
+  border:1px solid #00ffff;
+  text-align:center;
 }
 
 /* FOOTER */
@@ -134,13 +143,13 @@ footer{
 
 <body>
 
-<!-- VIDEO BACKGROUND -->
+<!-- VIDEO -->
 <video autoplay muted loop>
 <source src="https://cdn.coverr.co/videos/coverr-gaming-setup-5174/1080p.mp4" type="video/mp4">
 </video>
 <div class="overlay"></div>
 
-<!-- ENTER SCREEN -->
+<!-- INTRO -->
 <div id="enter" onclick="startSite()">
 🎮 WELCOME TO TONY WORLD<br>
 <small>Tap to Enter</small>
@@ -155,14 +164,26 @@ footer{
 <div class="hero">
 <img src="logo.png">
 <h1>THEJAS</h1>
-<p>Pro Gamer & Omegle Creator</p>
+<p>Pro Gamer & Content Creator</p>
 </div>
 
 <!-- ABOUT -->
 <div class="section">
 <div class="card">
 <h2>About</h2>
-<p>I am Thejas, passionate gamer and Omegle content creator.</p>
+<p>I am Thejas, gamer and Omegle content creator.</p>
+</div>
+</div>
+
+<!-- STATS -->
+<div class="section">
+<div class="card">
+<h2>Stats</h2>
+<div class="stats">
+<div class="stat">KD: 3.5</div>
+<div class="stat">Wins: 120+</div>
+<div class="stat">Rank: Ace</div>
+</div>
 </div>
 </div>
 
@@ -192,7 +213,7 @@ footer{
 <!-- SOUND -->
 <audio id="click" src="https://www.soundjay.com/buttons/sounds/button-16.mp3"></audio>
 
-<!-- YOUTUBE -->
+<!-- MUSIC -->
 <iframe id="yt" width="0" height="0" allow="autoplay"></iframe>
 
 <script>
