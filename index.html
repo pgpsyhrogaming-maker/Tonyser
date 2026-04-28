@@ -27,15 +27,25 @@ video{
 /* DARK OVERLAY */
 .overlay{
   position:fixed;
-  width:100%;height:100%;
+  width:100%;
+  height:100%;
   background:rgba(0,0,0,0.75);
   z-index:-1;
 }
 
-/* INTRO */
+/* 3D CANVAS */
+canvas{
+  position:fixed;
+  top:0;
+  left:0;
+  z-index:-3;
+}
+
+/* INTRO SCREEN */
 #enter{
   position:fixed;
-  width:100%;height:100%;
+  width:100%;
+  height:100%;
   background:black;
   display:flex;
   align-items:center;
@@ -61,6 +71,7 @@ nav{
   padding:15px 25px;
   border-bottom:1px solid #ff00ff;
 }
+
 nav h2{color:#00ffff}
 
 /* HERO */
@@ -68,11 +79,20 @@ nav h2{color:#00ffff}
   text-align:center;
   padding:90px 20px;
 }
+
 .hero img{
   width:120px;
   border-radius:20px;
   box-shadow:0 0 25px #00ffff;
+  animation:float 3s ease-in-out infinite;
 }
+
+@keyframes float{
+  0%{transform:translateY(0);}
+  50%{transform:translateY(-10px);}
+  100%{transform:translateY(0);}
+}
+
 .hero h1{
   font-size:55px;
   color:#ff00ff;
@@ -94,6 +114,7 @@ nav h2{color:#00ffff}
   border-radius:15px;
   transition:0.3s;
 }
+
 .card:hover{
   transform:scale(1.03);
   box-shadow:0 0 25px #00ffff;
@@ -105,6 +126,7 @@ nav h2{color:#00ffff}
   gap:15px;
   flex-wrap:wrap;
 }
+
 .game{
   width:140px;
   padding:12px;
@@ -113,6 +135,7 @@ nav h2{color:#00ffff}
   text-align:center;
   transition:0.3s;
 }
+
 .game:hover{
   background:#00ffff;
   color:black;
@@ -125,6 +148,7 @@ nav h2{color:#00ffff}
   gap:20px;
   flex-wrap:wrap;
 }
+
 .stat{
   flex:1;
   min-width:120px;
@@ -145,7 +169,7 @@ footer{
 
 <!-- VIDEO -->
 <video autoplay muted loop>
-<source src="https://cdn.coverr.co/videos/coverr-gaming-setup-5174/1080p.mp4" type="video/mp4">
+<source src="https://cdn.coverr.co/videos/coverr-gaming-setup-5174/1080p.mp4">
 </video>
 <div class="overlay"></div>
 
@@ -216,6 +240,9 @@ footer{
 <!-- MUSIC -->
 <iframe id="yt" width="0" height="0" allow="autoplay"></iframe>
 
+<!-- THREE JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
 <script>
 function startSite(){
   document.getElementById("click").play();
@@ -225,6 +252,50 @@ function startSite(){
 
   document.getElementById("enter").style.display="none";
 }
+
+/* 3D BACKGROUND */
+const scene = new THREE.Scene();
+
+const camera = new THREE.PerspectiveCamera(
+75, window.innerWidth/window.innerHeight, 0.1, 1000);
+
+const renderer = new THREE.WebGLRenderer({alpha:true});
+renderer.setSize(window.innerWidth, window.innerHeight);
+document.body.appendChild(renderer.domElement);
+
+const geometry = new THREE.BufferGeometry();
+const count = 800;
+const positions = new Float32Array(count*3);
+
+for(let i=0;i<count*3;i++){
+  positions[i]=(Math.random()-0.5)*10;
+}
+
+geometry.setAttribute('position',
+new THREE.BufferAttribute(positions,3));
+
+const material = new THREE.PointsMaterial({
+  size:0.02,
+  color:0x00ffff
+});
+
+const particles = new THREE.Points(geometry, material);
+scene.add(particles);
+
+camera.position.z=3;
+
+function animate(){
+  requestAnimationFrame(animate);
+  particles.rotation.y += 0.001;
+  renderer.render(scene, camera);
+}
+animate();
+
+window.addEventListener("resize",()=>{
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  camera.aspect = window.innerWidth/window.innerHeight;
+  camera.updateProjectionMatrix();
+});
 </script>
 
 </body>
